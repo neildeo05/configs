@@ -17,7 +17,6 @@ typedef struct {
 void xalloc(DynamicArray* arr, size_t len) {
   arr->data = realloc(arr->data, len * sizeof(int_t));
   arr->capacity = len;
-  arr->size = 0;
 }
 void print(DynamicArray* arr) {
   for(size_t i = 0; i < arr->capacity; i++) {
@@ -26,6 +25,7 @@ void print(DynamicArray* arr) {
 }
 
 void append(DynamicArray* arr, int32_t val) {
+  printf("%zu\n", arr->size);
   if (arr->size == arr->capacity) {
     xalloc(arr, arr->capacity*2);
   }
@@ -33,9 +33,12 @@ void append(DynamicArray* arr, int32_t val) {
   arr->size++;
 }
 
-DynamicArray init() {
+
+
+
+DynamicArray init(int init_val) {
   DynamicArray ret = (DynamicArray) {.size=0, .capacity=0, .data = NULL};
-  xalloc(&ret, 3);
+  xalloc(&ret, init_val);
   return ret;
 
 }

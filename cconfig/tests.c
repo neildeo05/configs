@@ -7,11 +7,11 @@ int main() {
     printf("%ld\n", text.dat[i]);
   }
   free(text.dat);
-  DynamicArray arr = init();
+  DynamicArray arr = init(3);
   append(&arr, 10);
   append(&arr, 10);
   append(&arr, 10);
-  append(&arr, 10);
+  append(&arr, 12);
   print(&arr);
   kill(&arr);
 }
