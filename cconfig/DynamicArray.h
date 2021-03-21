@@ -24,15 +24,21 @@ void print(DynamicArray* arr) {
   }
 }
 
-void append(DynamicArray* arr, int32_t val) {
-  printf("%zu\n", arr->size);
+void append(DynamicArray* arr, int64_t val) {
   if (arr->size == arr->capacity) {
     xalloc(arr, arr->capacity*2);
   }
-  arr->data[arr->size] = (int_t) {.i32=val};
+  arr->data[arr->size] = (int_t) {.i64=val};
   arr->size++;
 }
 
+int_t get(DynamicArray* arr, size_t index) {
+  if (index > arr->capacity - 1) {
+    fprintf(stderr, "IndexError: queried value %zu is out of bounds", index);
+    exit(1);
+  }
+  return arr->data[index];
+}
 
 
 

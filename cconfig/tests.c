@@ -1,4 +1,4 @@
-#include "DynamicArray.h"
+#include "PolymorphicDynamicArray.h"
 #include "Scanner.h"
 
 int main() {
@@ -11,7 +11,8 @@ int main() {
   append(&arr, 10);
   append(&arr, 10);
   append(&arr, 10);
-  append(&arr, 12);
+  append(&arr, 2147483648);
   print(&arr);
+  printf("%d\n", get(&arr, 3).i32);
   kill(&arr);
 }
