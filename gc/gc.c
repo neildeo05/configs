@@ -2,12 +2,11 @@
 #include <stdlib.h>
 #include "gc.h"
 
-
 struct Collector new_collector() {
   struct Collector ret;
   ret.cp = 0;
   ret.cap = 1;
-  ret.junk = malloc(ret.cap * sizeof(void*));
+  ret.junk = malloc(ret.cap * sizeof(Junk));
   ret.memory_leak = 0;
   return ret;
 }
@@ -18,7 +17,7 @@ void* xalloc(struct Collector* c, size_t size) {
     c->junk = realloc(c->junk, c->cap);
   }
   void* ptr = malloc(size);
-  c->junk[c->cp] = ptr;
+  c->junk->junk[c->cp] = ptr;
   c->cp++;
   return ptr;
 }
